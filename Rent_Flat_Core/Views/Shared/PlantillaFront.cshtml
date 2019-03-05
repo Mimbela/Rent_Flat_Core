@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>RENT A FLAT</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Bluesky template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <environment include="Development">
+
+        <link href="~/Front/styles/bootstrap4/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Front/plugins/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+        <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/animate.css">
+        <link rel="stylesheet" type="text/css" href="~/Front/styles/main_styles.css">
+        <link rel="stylesheet" type="text/css" href="~/Front/styles/responsive.css">
+    </environment>
+    @RenderSection("styles", false)
+</head>
+
+<body>
+    @*HEAD******************************************************************************************BEGIN NAV*@
+    <div class="super_container">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="logo">
+                                <img src="~/Front/images/logo.png" alt="">
+                            </div>
+                            <nav class="main_nav">
+
+                                <partial name="~/Views/Menu/MainMenu.cshtml"/>
+
+                              
+
+                            </nav>
+                               
+                            <div class="phone_num ml-auto">
+                                <div class="phone_num_inner">
+                                    <img src="~/Front/images/phone.png" alt=""><span>91 548 99 78</span>
+                                                                                   
+                                </div>
+                            </div>
+                            <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @*t*************************************************************************************************************FIN NAV*@
+
+
+        <!-- ***********************************************************************************************************MENU<500PX -->
+
+        <div class="menu trans_500">
+            <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="menu_close_container"><div class="menu_close"></div></div>
+                <div class="logo menu_logo">
+                    <a href="#">
+                        <div class="logo_container d-flex flex-row align-items-start justify-content-start">
+                            <div class="logo_image"><div><img src="~/Front/images/logo.png" alt=""></div></div>
+                        </div>
+                    </a>
+                </div>
+
+          <partial name="~/Views/Menu/MainMenu.cshtml"/>
+
+            </div>
+            <div class="menu_phone"><span>call us: </span>91 548 99 78</div>
+        </div>
+        <!-- *********************************************************************************************************FIN MENU<500PX -->
+
+
+
+
+
+
+
+
+
+        @RenderBody()
+
+
+    </div>
+
+   
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="footer_main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="footer_logo"><a href="#"><img src="~/Front/images/logo_large.png" alt=""></a></div>
+                    </div>
+                    <div class="col-lg-9 d-flex flex-column align-items-start justify-content-end">
+                        <div class="footer_title">Rent a flat
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 footer_col">
+                        <div class="footer_about">
+                            <div class="footer_about_text">Encuentra la casa de tus sueños en la playa</div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+     
+    </footer>
+
+   <environment include="Development">
+    <script src="~/Front/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Front/styles/bootstrap4/popper.js"></script>
+    <script src="~/Front/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Front/plugins/easing/easing.js"></script>
+    <script src="~/Front/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/Front/js/custom.js"></script>
+</environment>
+@RenderSection("scripts", false)
+
+
+
+</body>
+
+</html>
+
+
+

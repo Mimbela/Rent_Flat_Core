@@ -1,0 +1,35 @@
+﻿
+<ul>
+
+    @*<li class="menu_item"><a href="@Url.Action("Index","Home")">Home</a></li>
+    <li class="menu_item"><a href="@Url.Action("AcercaDeNosotros","PaginasSecundarias")">Acerca de Nosotros</a></li>
+    <li class="menu_item"><a href="@Url.Action("ListaPisosPorFiltro","Home")">Pisos en alquiler</a></li>
+    <li class="menu_item"><a href="@Url.Action("Login","Validacion")">Área Privada</a></li>*@
+
+    <li class="menu_item">
+        <a asp--action="Index"
+           asp-controller="Home">Home</a>
+    </li>
+
+
+    <li class="menu_item">
+        <a asp--action="AcercaDeNosotros"
+           asp-controller="PaginasSecundarias">Acerca de Nosotros</a>
+    </li>
+
+    <li class="menu_item">
+        <a asp--action="ListaPisosPorFiltro"
+           asp-controller="Home">Pisos en alquiler</a>
+    </li>
+
+    <li class="menu_item">
+        <a asp--action="Login"
+           asp-controller="Validacion">Área Privada</a>
+    </li>
+
+
+
+
+</ul>
+
+
