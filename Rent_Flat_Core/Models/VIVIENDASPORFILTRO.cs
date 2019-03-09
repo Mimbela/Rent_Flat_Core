@@ -25,7 +25,7 @@ namespace Rent_Flat_Core.Models
         public int Cod_TipoVivienda { get; set; }
 
         [Column("Codigo_Posta")]
-        public int Codigo_Posta { get; set; }
+        public string Codigo_Posta { get; set; }
 
         [Column("Descripcion_vivienda")]
         public string Descripcion_vivienda { get; set; }

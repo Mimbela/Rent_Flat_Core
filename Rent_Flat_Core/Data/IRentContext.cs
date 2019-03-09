@@ -16,7 +16,8 @@ namespace Rent_Flat_Core.Data
         DbSet<Tipos_Vivienda> Tipos_Vivienda { get; set; }
         DbSet<Usuarios> Usuarios { get; set; }
         DbSet<Viviendas> Viviendas { get; set; }
-
+        DbSet<VIVIENDASPORFILTRO> VIVIENDASPORFILTRO { get; set; }
+        List<VIVIENDASPORFILTRO> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones, int Cod_Casa, int Cod_Cliente);
         int SaveChanges();
 
         //todo lo que vaya a utilizar lo necesito en la interface

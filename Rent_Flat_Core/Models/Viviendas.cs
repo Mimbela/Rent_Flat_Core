@@ -25,7 +25,7 @@ namespace Rent_Flat_Core.Models
         public String Ubicacion { get; set; }
 
         [Column("Codigo_Posta")]
-        public int Codigo_Posta { get; set; }
+        public string Codigo_Posta { get; set; }
 
         [Column("Ciudad")]
         public string Ciudad { get; set; }
@@ -43,7 +43,7 @@ namespace Rent_Flat_Core.Models
         public String Descripcion { get; set; }
 
         [Column("Garaje")]
-        public byte[] Garaje { get; set; }
+        public bool Garaje { get; set; }
 
         [Column("Cod_TipoVivienda")]
         public int Cod_TipoVivienda { get; set; }

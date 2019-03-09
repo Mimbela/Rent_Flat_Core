@@ -31,7 +31,8 @@ namespace Rent_Flat_Core.Repositories
 
         //--------------------------------------------VIVIENDAS
         List<Viviendas> GetViviendas();
-        //List<VIVIENDASPORFILTRO_Result> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones, int Cod_Casa, int Cod_Cliente);
+        List<VIVIENDASPORFILTRO> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones, int Cod_Casa, int Cod_Cliente);
+
         Viviendas BuscarViviendas(int id);
         void ModificarVivienda(Viviendas modelo);
         int InsertarViviendas(Viviendas modelo);

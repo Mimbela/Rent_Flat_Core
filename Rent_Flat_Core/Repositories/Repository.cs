@@ -312,30 +312,7 @@ namespace Rent_Flat_Core.Repositories
 
     
 
-        //public List<VIVIENDASPORFILTRO_Result> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones, int Cod_Casa, int Cod_Cliente)
-        //{
-        //    return (this.context.VIVIENDASPORFILTRO(TipoVivienda, Costa, Banios, Habitaciones, Cod_Casa, Cod_Cliente).ToList());
-        //}
-
-      
-
-        //public List<VIVIENDASPORFILTRO_Result> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones)
-        //{
-        //    return (this.entidad.VIVIENDASPORFILTRO( TipoVivienda,  Costa,  Banios,  Habitaciones).ToList());
-        //}
-
-        //public List<Viviendas> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones)
-        //{
-
-        //    List<Viviendas> listaViviendas = this.entidad.Viviendas.Where(x => 
-        //        (TipoVivienda == 0 || x.Cod_TipoVivienda == TipoVivienda) 
-        //        && (Costa == 0 || x.Cod_Provincia == Costa) 
-        //        && (Banios == 0 || x.Num_banios >= Banios) 
-        //        && (Habitaciones == 0 || x.Num_habitaciones >= Habitaciones)).ToList();
-
-
-        //    return listaViviendas;
-        //}
+       
 
         public void InsertarCosta(Costas modelo)
         {
@@ -542,5 +519,35 @@ namespace Rent_Flat_Core.Repositories
 
 
         }
+
+        public List<VIVIENDASPORFILTRO> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones, int Cod_Casa, int Cod_Cliente)
+        {
+            return (this.context.GetViviendasByFilter(TipoVivienda, Costa, Banios, Habitaciones, Cod_Casa, Cod_Cliente).ToList());
+        }
     }
 }
+
+//public List<VIVIENDASPORFILTRO_Result> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones, int Cod_Casa, int Cod_Cliente)
+//{
+//    return (this.context.VIVIENDASPORFILTRO(TipoVivienda, Costa, Banios, Habitaciones, Cod_Casa, Cod_Cliente).ToList());
+//}
+
+
+
+//public List<VIVIENDASPORFILTRO_Result> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones)
+//{
+//    return (this.entidad.VIVIENDASPORFILTRO( TipoVivienda,  Costa,  Banios,  Habitaciones).ToList());
+//}
+
+//public List<Viviendas> GetViviendasByFilter(int TipoVivienda, int Costa, int Banios, int Habitaciones)
+//{
+
+//    List<Viviendas> listaViviendas = this.entidad.Viviendas.Where(x => 
+//        (TipoVivienda == 0 || x.Cod_TipoVivienda == TipoVivienda) 
+//        && (Costa == 0 || x.Cod_Provincia == Costa) 
+//        && (Banios == 0 || x.Num_banios >= Banios) 
+//        && (Habitaciones == 0 || x.Num_habitaciones >= Habitaciones)).ToList();
+
+
+//    return listaViviendas;
+//}
