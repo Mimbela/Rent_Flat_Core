@@ -31,6 +31,8 @@ namespace Rent_Flat_Core
           
             //se resuelve las dependencias con AddTransient
             services.AddTransient<IRepository, Repository>();
+
+            services.AddTransient<RepositoryApiRent>();
             services.AddDbContext<IRentContext, RentContext>(options => options.UseSqlServer(cadenaconexion));
             services.AddMvc();
         }
@@ -44,6 +46,8 @@ namespace Rent_Flat_Core
             {
                 app.UseDeveloperExceptionPage();//linea de control de errores
             }
+
+            app.UseHttpsRedirection();
 
             //4º utilizamos los archivos estáticos
             app.UseStaticFiles();

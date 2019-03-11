@@ -38,7 +38,7 @@ namespace Rent_Flat_Core.Data
             SqlParameter codcasaParam = new SqlParameter("@Cod_casa", Cod_Casa);
             SqlParameter codclienteParam = new SqlParameter("@Cod_cliente", Cod_Cliente);
 
-             return this.VIVIENDASPORFILTRO.FromSql(sql, tViviendaParam, costaParam, baParam, habitParam, codcasaParam, codclienteParam).ToList();
+            return this.VIVIENDASPORFILTRO.FromSql(sql, tViviendaParam, costaParam, baParam, habitParam, codcasaParam, codclienteParam).ToList();
 
         }
     }

@@ -28,6 +28,6 @@ namespace Rent_Flat_Core.Models
         public DateTime Fecha_baja { get; set; }
 
         [Column("Precio_activo")]
-        public byte[] Precio_activo { get; set; }
+        public bool Precio_activo { get; set; }
     }
 }

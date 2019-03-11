@@ -10,69 +10,78 @@ namespace Rent_Flat_Core.Controllers
 {
     public class BackTipoViviendaController : Controller
     {
-        IRepository repo;
-        public BackTipoViviendaController(IRepository repo)
+        //IRepository repo;
+
+        RepositoryApiRent repo;
+        public BackTipoViviendaController(RepositoryApiRent repo)
         {
             this.repo = repo;
         }
-        public IActionResult GetTiposVivienda()
-        {
 
-            return View(this.repo.GetTiposViviendas());
-        }
-        //---------------------------------------------------------------------
-        //GET: EDIT
+        //public async Task<IActionResult> GetTiposVivienda()
+        //{
+        //          return View(await this.repo.GetTiposViviendas());
 
-      //  [Authorize(Roles = "Director")]
-        public IActionResult Edit(int id)
-        {
+        //}
 
-            return View(this.repo.BuscarTipoVivienda(id));
-        }
-        [HttpPost]
-        public IActionResult Edit(Tipos_Vivienda c)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(c);
-            }
-            this.repo.ModificarTipoVivienda(c);
-            return RedirectToAction("GetTiposVivienda");
-        }
-        //----------------------------
-        //GET: CREATE
+        //    public IActionResult GetTiposVivienda()
+        //    {
 
-      //  [Authorize(Roles = "Director")]
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Tipos_Vivienda u)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(u);
-            }
-            this.repo.InsertarTipoViviendas(u);
-            return RedirectToAction("GetTiposVivienda");
-        }
+        //        return View(this.repo.GetTiposViviendas());
+        //    }
+        //    //---------------------------------------------------------------------
+        //    //GET: EDIT
 
-        //----------------------------
-        //DELETE
+        //  //  [Authorize(Roles = "Director")]
+        //    public IActionResult Edit(int id)
+        //    {
 
-      //  [Authorize(Roles = "Director")]
-        public IActionResult Delete(int id)
-        {
-            Tipos_Vivienda tipos = this.repo.BuscarTipoVivienda(id);
-            return View(tipos);
-        }
+        //        return View(this.repo.BuscarTipoVivienda(id));
+        //    }
+        //    [HttpPost]
+        //    public IActionResult Edit(Tipos_Vivienda c)
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return View(c);
+        //        }
+        //        this.repo.ModificarTipoVivienda(c);
+        //        return RedirectToAction("GetTiposVivienda");
+        //    }
+        //    //----------------------------
+        //    //GET: CREATE
+
+        //  //  [Authorize(Roles = "Director")]
+        //    public IActionResult Create()
+        //    {
+        //        return View();
+        //    }
+        //    [HttpPost]
+        //    public IActionResult Create(Tipos_Vivienda u)
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return View(u);
+        //        }
+        //        this.repo.InsertarTipoViviendas(u);
+        //        return RedirectToAction("GetTiposVivienda");
+        //    }
+
+        //    //----------------------------
+        //    //DELETE
+
+        //  //  [Authorize(Roles = "Director")]
+        //    public IActionResult Delete(int id)
+        //    {
+        //        Tipos_Vivienda tipos = this.repo.BuscarTipoVivienda(id);
+        //        return View(tipos);
+        //    }
 
 
-        public IActionResult EliminarTipoVivienda(int id)
-        {
-            this.repo.EliminarTipoViviendas(id);
-            return RedirectToAction("GetTiposVivienda");
+        //    public IActionResult EliminarTipoVivienda(int id)
+        //    {
+        //        this.repo.EliminarTipoViviendas(id);
+        //        return RedirectToAction("GetTiposVivienda");
+        //    }
         }
     }
-}

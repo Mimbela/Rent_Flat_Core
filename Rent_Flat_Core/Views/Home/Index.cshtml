@@ -1,341 +1,360 @@
 ﻿@model Rent_Flat_Core.Models.BusquedaModel
-    @{
-        ViewData["Title"] = "Index";
-        Layout = "~/Views/Shared/PlantillaFront.cshtml";
-    }
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/PlantillaFront.cshtml";
+}
 
 
-    @*@{
-            ViewBag.Title = "Index";
-            List<SelectListItem> tiposVivienda = ViewBag.TiposVivienda;
-            List<SelectListItem> listaCostas = ViewBag.ListaCostas;
-        }*@
+@*@{
+        ViewBag.Title = "Index";
+        List<SelectListItem> tiposVivienda = ViewBag.TiposVivienda;
+        List<SelectListItem> listaCostas = ViewBag.ListaCostas;
+    }*@
 
-    <environment include="Development">
-        <link rel="stylesheet" type="text/css" href="~/Front/styles/bootstrap4/bootstrap.min.css">
-        <link href="~/Front/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-        <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-        <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/animate.css">
-        <link rel="stylesheet" type="text/css" href="~/Front/styles/main_styles.css">
-        <link rel="stylesheet" type="text/css" href="~/Front/styles/responsive.css">
-    </environment>
+<environment include="Development">
+    <link rel="stylesheet" type="text/css" href="~/Front/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/Front/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/styles/responsive.css">
+</environment>
+
+<environment include="Production">
+    <link rel="stylesheet" type="text/css" href="~/Front/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/Front/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Front/styles/responsive.css">
+</environment>
 
 
-    <h2>Index</h2>
+<h2>Index</h2>
 
-    <div class="home">
+<div class="home">
 
-        <!-- Home Slider -->
-        <div class="home_slider_container">
-            <div class="owl-carousel owl-theme home_slider">
+    <!-- Home Slider -->
+    <div class="home_slider_container">
+        <div class="owl-carousel owl-theme home_slider">
 
-                <!-- Slide -->
-                <div class="owl-item">
-                    <div class="home_slider_background" style="background-image:url(/Front/images/home_slider_1.jpg)"></div>
+            <!-- Slide -->
+            <div class="owl-item">
+                <div class="home_slider_background" style="background-image:url(/Front/images/home_slider_1.jpg)"></div>
 
-                    <div class="slide_container">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="slide_content">
-                                        <div class="home_subtitle">Encuentra casa en la costa española</div>
-                                        <div class="home_title">Villa disponible</div>
-                                        <div class="home_details">
-                                            <ul class="home_details_list d-flex flex-row align-items-center justify-content-start">
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_1.png" alt=""></div>
-                                                    <span> 550 m.</span>
-                                                </li>
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_2.png" alt=""></div>
-                                                    <span> 3 habitaciones</span>
-                                                </li>
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_3.png" alt=""></div>
-                                                    <span> 2 baños</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="home_price">1650 €</div>
+                <div class="slide_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="slide_content">
+                                    <div class="home_subtitle">Encuentra casa en la costa española</div>
+                                    <div class="home_title">Villa disponible</div>
+                                    <div class="home_details">
+                                        <ul class="home_details_list d-flex flex-row align-items-center justify-content-start">
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_1.png" alt=""></div>
+                                                <span> 550 m.</span>
+                                            </li>
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_2.png" alt=""></div>
+                                                <span> 3 habitaciones</span>
+                                            </li>
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_3.png" alt=""></div>
+                                                <span> 2 baños</span>
+                                            </li>
+                                        </ul>
                                     </div>
+                                    <div class="home_price">1650 €</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Slide -->
-                <div class="owl-item">
-                    <div class="home_slider_background" style="background-image:url(/Front/images/home_slider_1.jpg)"></div>
-                    <div class="slide_container">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="slide_content">
-                                        <div class="home_subtitle">super oferta</div>
-                                        <div class="home_title">Villa disponible</div>
-                                        <div class="home_details">
-                                            <ul class="home_details_list d-flex flex-row align-items-center justify-content-start">
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_1.png" alt=""></div>
-                                                    <span> 550 m.</span>
-                                                </li>
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_2.png" alt=""></div>
-                                                    <span> 3 habitaciones</span>
-                                                </li>
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_3.png" alt=""></div>
-                                                    <span> 2 baños</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="home_price">1650 €</div>
+            <!-- Slide -->
+            <div class="owl-item">
+                <div class="home_slider_background" style="background-image:url(/Front/images/home_slider_1.jpg)"></div>
+                <div class="slide_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="slide_content">
+                                    <div class="home_subtitle">super oferta</div>
+                                    <div class="home_title">Villa disponible</div>
+                                    <div class="home_details">
+                                        <ul class="home_details_list d-flex flex-row align-items-center justify-content-start">
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_1.png" alt=""></div>
+                                                <span> 550 m.</span>
+                                            </li>
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_2.png" alt=""></div>
+                                                <span> 3 habitaciones</span>
+                                            </li>
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_3.png" alt=""></div>
+                                                <span> 2 baños</span>
+                                            </li>
+                                        </ul>
                                     </div>
+                                    <div class="home_price">1650 €</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Slide -->
-                <div class="owl-item">
-                    <div class="home_slider_background" style="background-image:url(/Front/images/home_slider_1.jpg)"></div>
-                    <div class="slide_container">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="slide_content">
-                                        <div class="home_subtitle">super oferta</div>
-                                        <div class="home_title">Villa disponible</div>
-                                        <div class="home_details">
-                                            <ul class="home_details_list d-flex flex-row align-items-center justify-content-start">
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_1.png" alt=""></div>
-                                                    <span>  550 m.</span>
-                                                </li>
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_2.png" alt=""></div>
-                                                    <span> 3 habitaciones</span>
-                                                </li>
-                                                <li>
-                                                    <div class="home_details_image"><img src="~/Front/images/icon_3.png" alt=""></div>
-                                                    <span> 3 baños</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="home_price">16500 €</div>
+            <!-- Slide -->
+            <div class="owl-item">
+                <div class="home_slider_background" style="background-image:url(/Front/images/home_slider_1.jpg)"></div>
+                <div class="slide_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="slide_content">
+                                    <div class="home_subtitle">super oferta</div>
+                                    <div class="home_title">Villa disponible</div>
+                                    <div class="home_details">
+                                        <ul class="home_details_list d-flex flex-row align-items-center justify-content-start">
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_1.png" alt=""></div>
+                                                <span>  550 m.</span>
+                                            </li>
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_2.png" alt=""></div>
+                                                <span> 3 habitaciones</span>
+                                            </li>
+                                            <li>
+                                                <div class="home_details_image"><img src="~/Front/images/icon_3.png" alt=""></div>
+                                                <span> 3 baños</span>
+                                            </li>
+                                        </ul>
                                     </div>
+                                    <div class="home_price">16500 €</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
 
-    <!-- Home Search -->
-    <div class="home_search">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="home_search_container">
-                        <div class="home_search_content">
-                            @using (Html.BeginForm("ListaPisosPorFiltro", "Home", FormMethod.Post, new { @class = "search_form d-flex flex-row align-items-start justfy-content-start" }))
-                                {
+<!-- Home Search -->
+<div class="home_search">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="home_search_container">
+                    <div class="home_search_content">
+                        @using (Html.BeginForm("ListaPisosPorFiltro", "Home", FormMethod.Post, new { @class = "search_form d-flex flex-row align-items-start justfy-content-start" }))
+                        {
 
-                                    <div class="search_form_content d-flex flex-row align-items-start justfy-content-start flex-wrap">
+                            <div class="search_form_content d-flex flex-row align-items-start justfy-content-start flex-wrap">
 
-                                        <div>
-                                            @Html.DropDownListFor(x => Model.TiposViviendaSelectedValue, Model.TiposVivienda, new { @class = "search_form_select" })
+                                <div>
+                                    @Html.DropDownListFor(x => Model.TiposViviendaSelectedValue, Model.TiposVivienda, new { @class = "search_form_select" })
 
-                                        </div>
-                                        <div>
-                                            @Html.DropDownListFor(x => Model.CostasSelectedValue, Model.ListaCostas, new { @class = "search_form_select" })
+                                </div>
+                                <div>
+                                    @Html.DropDownListFor(x => Model.CostasSelectedValue, Model.ListaCostas, new { @class = "search_form_select" })
 
-                                        </div>
-                                        <div>
-                                            @Html.DropDownListFor(x => Model.NumeroHabitacionesSelectedValue, Model.NumeroHabitaciones, new { @class = "search_form_select" })
-                                        </div>
-                                        <div>
-                                            @Html.DropDownListFor(x => Model.NumeroBaniosSelectedValue, Model.NumeroBanios, new { @class = "search_form_select" })
-                                        </div>
-                                    </div>
-                                    <input type="submit" value="GetPisos" class="search_form_button ml-auto" />
-                                }
-                        </div>
+                                </div>
+                                <div>
+                                    @Html.DropDownListFor(x => Model.NumeroHabitacionesSelectedValue, Model.NumeroHabitaciones, new { @class = "search_form_select" })
+                                </div>
+                                <div>
+                                    @Html.DropDownListFor(x => Model.NumeroBaniosSelectedValue, Model.NumeroBanios, new { @class = "search_form_select" })
+                                </div>
+                            </div>
+                            <input type="submit" value="GetPisos" class="search_form_button ml-auto" />
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
-    <!-- Cities -->
+<!-- Cities -->
 
-    <div class="cities">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="section_title">Find properties in these cities</div>
-                    <div class="section_subtitle">Search your dream home</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="cities_container d-flex flex-row flex-wrap align-items-start justify-content-between">
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_1.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 10})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA BRAVA</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_2.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 20})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA DORADA</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_3.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 30})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA DE VALENCIA</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_4.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 40})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA BLANCA</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_5.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 20})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA CÁLIDA</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_6.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 60})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA DE ALMERÍA</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_7.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 70})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA DEL SOL</div>
-
-                    </a>
-                </div>
-            </div>
-
-            <!-- City -->
-            <div class="city">
-                <img src="~/Front/images/city_8.jpg">
-                <div class="city_overlay">
-                    <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 80})" class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="city_title">COSTA DE LA LUZ</div>
-
-                    </a>
-                </div>
+<div class="cities">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title">Find properties in these cities</div>
+                <div class="section_subtitle">Search your dream home</div>
             </div>
         </div>
     </div>
 
-    <!-- Testimonials -->
+    <div class="cities_container d-flex flex-row flex-wrap align-items-start justify-content-between">
 
-    <div class="testimonials">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="section_title">Lo que opninan nuestros clientes</div>
-                    <div class="section_subtitle">Busca la casa de tus sueños</div>
-                </div>
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_1.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 10})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA BRAVA</div>
+
+                </a>
             </div>
-            <div class="row testimonials_row">
+        </div>
 
-                <!-- Testimonial Item -->
-                <div class="col-lg-4 testimonial_col">
-                    <div class="testimonial">
-                        <div class="testimonial_title">Encantada con Rent a flat</div>
-                        <div class="testimonial_text">“Mi experiencia ha sido positiva, sobre todo a la hora de asesoramiento en cuanto a la elección de los mejores pisos y negociación de precios, atención cercana y personalizada."</div>
-                        <div class="testimonial_author_image"><img src="~/Front/images/testimonial_1.jpg" alt=""></div>
-                        <div class="testimonial_author"><a href="#">Claudia Castillo</a><span>, Cliente</span></div>
-                        <div class="rating_r rating_r_5 testimonial_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                    </div>
-                </div>
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_2.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 20})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA DORADA</div>
 
-                <!-- Testimonial Item -->
-                <div class="col-lg-4 testimonial_col">
-                    <div class="testimonial">
-                        <div class="testimonial_title">Son gente de confianza</div>
-                        <div class="testimonial_text"> Más que un gestor inmobiliario, un socio en quien confiar. Sin duda repetiría la experiencia en caso de requerir de nuevo de sus servicios”</div>
-                        <div class="testimonial_author_image"><img src="~/Front/images/testimonial_2.jpg" alt=""></div>
-                        <div class="testimonial_author"><a href="#">Isaac Ávila</a><span>, Cliente</span></div>
-                        <div class="rating_r rating_r_5 testimonial_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                    </div>
-                </div>
+                </a>
+            </div>
+        </div>
 
-                <!-- Testimonial Item -->
-                <div class="col-lg-4 testimonial_col">
-                    <div class="testimonial">
-                        <div class="testimonial_title">Muy profesionales</div>
-                        <div class="testimonial_text">Generaron confianza a lo largo del proceso, con seriedad, interés y profesionalidad y se demostró que eran la mejor opción.</div>
-                        <div class="testimonial_author_image"><img src="~/Front/images/testimonial_3.jpg" alt=""></div>
-                        <div class="testimonial_author"><a href="#">Renji Mimpal</a><span>, Cliente</span></div>
-                        <div class="rating_r rating_r_5 testimonial_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                    </div>
-                </div>
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_3.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 30})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA DE VALENCIA</div>
 
+                </a>
+            </div>
+        </div>
+
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_4.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 40})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA BLANCA</div>
+
+                </a>
+            </div>
+        </div>
+
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_5.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 20})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA CÁLIDA</div>
+
+                </a>
+            </div>
+        </div>
+
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_6.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 60})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA DE ALMERÍA</div>
+
+                </a>
+            </div>
+        </div>
+
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_7.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 70})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA DEL SOL</div>
+
+                </a>
+            </div>
+        </div>
+
+        <!-- City -->
+        <div class="city">
+            <img src="~/Front/images/city_8.jpg">
+            <div class="city_overlay">
+                <a href="@Url.Action("ListaPisosPorFiltroLoad",new { idCosta = 80})" class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="city_title">COSTA DE LA LUZ</div>
+
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <environment include="Development">
-        <script src="~/Front/js/jquery-3.2.1.min.js"></script>
-        <script src="~/Front/styles/bootstrap4/popper.js"></script>
-        <script src="~/Front/styles/bootstrap4/bootstrap.min.js"></script>
-        <script src="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-        <script src="~/Front/plugins/easing/easing.js"></script>
-        <script src="~/Front/plugins/parallax-js-master/parallax.min.js"></script>
-        <script src="~/Front/js/custom.js"></script>
-    </environment>
+<!-- Testimonials -->
+
+<div class="testimonials">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title">Lo que opninan nuestros clientes</div>
+                <div class="section_subtitle">Busca la casa de tus sueños</div>
+            </div>
+        </div>
+        <div class="row testimonials_row">
+
+            <!-- Testimonial Item -->
+            <div class="col-lg-4 testimonial_col">
+                <div class="testimonial">
+                    <div class="testimonial_title">Encantada con Rent a flat</div>
+                    <div class="testimonial_text">“Mi experiencia ha sido positiva, sobre todo a la hora de asesoramiento en cuanto a la elección de los mejores pisos y negociación de precios, atención cercana y personalizada."</div>
+                    <div class="testimonial_author_image"><img src="~/Front/images/testimonial_1.jpg" alt=""></div>
+                    <div class="testimonial_author"><a href="#">Claudia Castillo</a><span>, Cliente</span></div>
+                    <div class="rating_r rating_r_5 testimonial_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+            </div>
+
+            <!-- Testimonial Item -->
+            <div class="col-lg-4 testimonial_col">
+                <div class="testimonial">
+                    <div class="testimonial_title">Son gente de confianza</div>
+                    <div class="testimonial_text"> Más que un gestor inmobiliario, un socio en quien confiar. Sin duda repetiría la experiencia en caso de requerir de nuevo de sus servicios”</div>
+                    <div class="testimonial_author_image"><img src="~/Front/images/testimonial_2.jpg" alt=""></div>
+                    <div class="testimonial_author"><a href="#">Isaac Ávila</a><span>, Cliente</span></div>
+                    <div class="rating_r rating_r_5 testimonial_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+            </div>
+
+            <!-- Testimonial Item -->
+            <div class="col-lg-4 testimonial_col">
+                <div class="testimonial">
+                    <div class="testimonial_title">Muy profesionales</div>
+                    <div class="testimonial_text">Generaron confianza a lo largo del proceso, con seriedad, interés y profesionalidad y se demostró que eran la mejor opción.</div>
+                    <div class="testimonial_author_image"><img src="~/Front/images/testimonial_3.jpg" alt=""></div>
+                    <div class="testimonial_author"><a href="#">Renji Mimpal</a><span>, Cliente</span></div>
+                    <div class="rating_r rating_r_5 testimonial_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<environment include="Development">
+    <script src="~/Front/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Front/styles/bootstrap4/popper.js"></script>
+    <script src="~/Front/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Front/plugins/easing/easing.js"></script>
+    <script src="~/Front/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/Front/js/custom.js"></script>
+</environment>
+<environment include="Production">
+    <script src="~/Front/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Front/styles/bootstrap4/popper.js"></script>
+    <script src="~/Front/styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Front/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Front/plugins/easing/easing.js"></script>
+    <script src="~/Front/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/Front/js/custom.js"></script>
+</environment>
 

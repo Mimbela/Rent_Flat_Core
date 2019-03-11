@@ -14,18 +14,18 @@ namespace Rent_Flat_Core.Controllers
         {
             this.repo = repo;
         }
-        public IActionResult Index(int? indice)//lo haré con linq//? son opcionales
+        public IActionResult Index(/*int? indice*/)//lo haré con linq//? son opcionales
         {
-            if (indice == null)
-            {
-                indice = 0;
-            }
+            //if (indice == null)
+            //{
+            //    indice = 0;
+            //}
 
-            int numeroregistros = 0;
+            //int numeroregistros = 0;
 
 
           //  List<VISTATODOSCLIENTES> clientes = this.repo.PaginarClientes(indice.GetValueOrDefault(), ref numeroregistros);
-            ViewBag.Registros = numeroregistros;
+           // ViewBag.Registros = numeroregistros;
 
             //  return View(clientes);
             return View();

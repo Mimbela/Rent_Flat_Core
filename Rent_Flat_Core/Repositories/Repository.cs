@@ -310,9 +310,9 @@ namespace Rent_Flat_Core.Repositories
             return this.context.Viviendas.ToList();
         }
 
-    
 
-       
+
+
 
         public void InsertarCosta(Costas modelo)
         {
