@@ -14,110 +14,130 @@ namespace Rent_Flat_Core.Controllers
     {
       
      
-            IRepository repo;
-            public BackUsuariosController(IRepository repo)
+            RepositoryApiRent repo;
+            public BackUsuariosController(RepositoryApiRent repo)
             {
                 this.repo = repo;
             }
 
-            // GET: BackUsuarios
-            public IActionResult Usuarios()
-            {
-
-                return View(this.repo.GetUsuarios());
-            }
-
-            //GET:EDIT
-            public IActionResult Edit(int id)
-            {
-                var usuario = this.repo.BuscarUsuario(id);
-                usuario.Password = string.Empty;
-
-
-                return View(this.repo.BuscarUsuario(id));
-
-            }
-            [HttpPost]
-            public IActionResult Edit(Usuarios u)
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View(u);
-                }
-                var encodingService = new EncodingService();
-
-                if (String.IsNullOrEmpty(u.Password))
-                {
-                    return View(u);
-                }
-                u.Password = encodingService.SHA256(u.Password);
-
-                this.repo.ModificarUsuario(u);
-                return RedirectToAction("Usuarios");
-            }
-            //----------------------------
-            //GET: CREATE
-            public IActionResult Create()
-            {
-                var algo = this.repo.ComboRolUsuario();
-                List<SelectListItem> listaDePerfiles = new List<SelectListItem>();
-                foreach (var item in algo)
-                {
-                    SelectListItem Perfil = new SelectListItem()
-                    {
-                        Value = item.Key.ToString(),
-                        Text = item.Value
-                    };
-                    listaDePerfiles.Add(Perfil);
-
-                }
-
-                ViewBag.ListaPerfiles = listaDePerfiles;
-
-                return View(new Usuarios());
-            }
-            [HttpPost]
-            public IActionResult Create(Usuarios u)
-            {
-                var algo = this.repo.ComboRolUsuario();
-                var encodingService = new EncodingService();
-
-
-                if (!ModelState.IsValid)
-                {
-                    List<SelectListItem> listaDePerfiles = new List<SelectListItem>();
-                    foreach (var item in algo)
-                    {
-                        SelectListItem Perfil = new SelectListItem()
-                        {
-                            Value = item.Key.ToString(),
-                            Text = item.Value
-                        };
-                        listaDePerfiles.Add(Perfil);
-                    }
-                    ViewBag.ListaPerfiles = new List<SelectListItem>();
-                    ViewBag.ListaPerfiles = listaDePerfiles;
-                    return View(u);
-                }
-                u.Perfil = algo.ContainsKey(u.DIR) ? algo[u.DIR] : null;
-                u.Password = encodingService.SHA256(u.Password);
-
-                this.repo.InsertarUsuarios(u);
-                return RedirectToAction("Usuarios");
-            }
-            //------------------------------------------------------
-            //DELETE
-            public IActionResult Delete(int id)
-            {
-                Usuarios usuarios = this.repo.BuscarUsuario(id);
-                return View(usuarios);
-            }
-
-
-            public IActionResult EliminarUsuario(int id)
-            {
-                this.repo.EliminarUsuario(id);
-                return RedirectToAction("Usuarios");
-            }
+        public async Task<IActionResult> Usuarios()
+        {
+            return View(await this.repo.GetUsuariosAsync());
         }
+
+        //-----------
+
+        public async Task<IActionResult> Edit(int id)
+        {
+
+            var usuario =await this.repo.BuscarUsuarioAsync(id);
+            usuario.Password = string.Empty;
+
+            return View(await this.repo.BuscarUsuarioAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Usuarios u, int id)
+        {
+           
+
+            if (!ModelState.IsValid)
+            {
+
+                return View(u);
+            }
+
+            var encodingService = new EncodingService();
+
+            if (String.IsNullOrEmpty(u.Password))
+            {
+                return View(u);
+            }
+            u.Password = encodingService.SHA256(u.Password);
+
+            await this.repo.ModificarUsuarioAsync(u,id);
+            return RedirectToAction("Usuarios");
+        }
+
+        //------------------------------------------
+        public async Task<IActionResult> Create()
+        {
+            var listausuarios = await this.repo.GetUsuariosAsync();
+            List<SelectListItem> listaPerfiles = new List<SelectListItem>();
+
+            foreach (var item in listausuarios)
+            {
+                SelectListItem selList = new SelectListItem() { Value = item.DIR.ToString(), Text = item.Perfil };
+                if (!listaPerfiles.Any(x => x.Value == selList.Value && x.Text == selList.Text))
+                {
+                    listaPerfiles.Add(selList);
+                }
+            }
+
+            ViewBag.ListaPerfiles = listaPerfiles;
+            return View(new Usuarios());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Usuarios cl)
+        {
+            EncodingService encodingService = new EncodingService();
+
+            var listausuarios = await this.repo.GetUsuariosAsync();
+            List<SelectListItem> listaPerfiles = new List<SelectListItem>();
+            foreach (var item in listausuarios)
+            {
+                SelectListItem selList = new SelectListItem() { Value = item.DIR.ToString(), Text = item.Perfil };
+                if (!listaPerfiles.Any(x => x.Value == selList.Value && x.Text == selList.Text))
+                {
+                    listaPerfiles.Add(selList);
+                }
+            }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ListaPerfiles = listaPerfiles;
+                return View(cl);
+            }
+
+            cl.Perfil = listaPerfiles.Any(x=>x.Value==cl.DIR.ToString()) ? listaPerfiles.Where(x=>x.Value == cl.DIR.ToString()).Select(x=>x.Text).FirstOrDefault() : null;
+                cl.Password = encodingService.SHA256(cl.Password);
+
+            await this.repo.InsertarUsuarioAsync(cl);
+
+
+            return RedirectToAction("Usuarios");
+        }
+
+        //------------
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            Usuarios cl = await this.repo.BuscarUsuarioAsync(id);
+            return View(cl);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EliminarUsuario(int Cod_usuario)
+        {
+            await this.repo.EliminarUsuarioAsync(Cod_usuario);
+            return RedirectToAction("Usuarios");
+
+        }
+
+        ////------------------------------------------------------
+        ////DELETE
+        //public IActionResult Delete(int id)
+        //{
+        //    Usuarios usuarios = this.repo.BuscarUsuario(id);
+        //    return View(usuarios);
+        //}
+
+
+        //public IActionResult EliminarUsuario(int id)
+        //{
+        //    this.repo.EliminarUsuario(id);
+        //    return RedirectToAction("Usuarios");
+        //}
+    }
 }

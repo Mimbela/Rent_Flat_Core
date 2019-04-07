@@ -22,43 +22,40 @@ namespace Rent_Flat_Core.Controllers
         {
 
             var tiposVivienda = await this.repo.GetTiposViviendasAsync();
-            var costas = await this.repo.GetCostasAsync();
+            var costas = await this.repo.GetNombreCostasAsync();
             BusquedaModel busquedaModel = new BusquedaModel();
-            busquedaModel.TiposVivienda = new List<SelectListItem>()
-            {
-                new SelectListItem() {Value = "0", Text = "Tipo Vivienda"}
-            };
-            busquedaModel.ListaCostas = new List<SelectListItem>()
-            {
-                new SelectListItem() {Value = "0", Text = "Costa"}
-            };
-            busquedaModel.NumeroBanios = new List<SelectListItem>()
-            {
-                 new SelectListItem() { Value = "0", Text = "Baños" },
-                new SelectListItem() { Value = "1", Text = "1 Baño" },
-                new SelectListItem() { Value = "2", Text = "2 Baños" },
-                new SelectListItem() { Value = "3", Text = "3 Baños" }
-            };
-            busquedaModel.NumeroHabitaciones = new List<SelectListItem>()
-            {
-                new SelectListItem() { Value = "0", Text = "Habitaciones"},
-                new SelectListItem() { Value = "1", Text = "1 Habitación"},
-                new SelectListItem() { Value = "2", Text = "2 Habitaciones"},
-                new SelectListItem() { Value = "3", Text = "3 Habitaciones"},
-                new SelectListItem() { Value = "4", Text = "4 Habitaciones"},
-                new SelectListItem() { Value = "5", Text = "5 Habitaciones"},
-                new SelectListItem() { Value = "6", Text = "6 Habitaciones"},
-            };
-
             
+           // busquedaModel.TiposVivienda.AddRange(tiposVivienda.Select(x => new SelectListItem() { Value = x.Cod_tipo_vivienda.ToString(), Text = x.Descripcion }));
+           foreach (var tipoVivienda in tiposVivienda)
+            {
+                var algo = new SelectListItem();
+                algo.Value = tipoVivienda.Cod_tipo_vivienda.ToString();
+                algo.Text = tipoVivienda.Descripcion;
+                busquedaModel.TiposVivienda.Add(algo);
+            }
+        //  busquedaModel.ListaCostas.AddRange(costas.Select(x => new SelectListItem() { Value = x.Cod_Provincia.ToString(), Text = x.NombreProvincia }));
 
-            busquedaModel.TiposVivienda.AddRange(tiposVivienda.Select(x => new SelectListItem() { Value = x.Cod_tipo_vivienda.ToString(), Text = x.Descripcion }));
-            busquedaModel.ListaCostas.AddRange(costas.Select(x => new SelectListItem() { Value = x.Cod_Provincia.ToString(), Text = x.NombreProvincia }));
+            foreach (var costa in costas)
+            {
+                var algo2 = new SelectListItem();
+                algo2.Value = costa.Cod_Provincia.ToString();
+                algo2.Text = costa.NombreProvincia;
 
-            //ViewBag.Resumen2 = this.repo.GetViviendas();
-
-            return View(busquedaModel);
+                busquedaModel.ListaCostas.Add(algo2);
+            }
+             return View(busquedaModel);
         }
+
+
+
+        public async Task <IActionResult> ListaPisosPorFiltro()
+        {
+            BusquedaModel busqueda = new BusquedaModel();
+            var resultado =await this.repo.GetViviendasByFilterAsync(busqueda);
+            return View(resultado);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> ListaPisosPorFiltro(BusquedaModel busqueda)
         {
@@ -67,33 +64,42 @@ namespace Rent_Flat_Core.Controllers
             busqueda.Cod_Cliente = 0;
             var otro = await this.repo.GetViviendasByFilterAsync(busqueda);
             return View(otro);
-
-            //public IActionResult Property(int cod_casa)//para sacar una casa para la descripción
-            //{
-            //    int tipoVivienda = 0;
-            //    int costa = 0;
-            //    int num_banios = 0;
-            //    int num_habitaciones = 0;
-            //    int IdCliente = 0;
-            //    var propiedad = this.repo.GetViviendasByFilter(tipoVivienda, costa, num_banios, num_habitaciones, cod_casa, IdCliente).FirstOrDefault();
-            //    return View(propiedad);
-            //}
-            //public IActionResult ListaPisosPorFiltro()
-            //{
-            //    BusquedaModel busqueda = new BusquedaModel();
-            //    var resultado = this.repo.GetViviendasByFilter(busqueda.TiposViviendaSelectedValue, busqueda.CostasSelectedValue, busqueda.NumeroBaniosSelectedValue, busqueda.NumeroHabitacionesSelectedValue, busqueda.Cod_Casa, busqueda.Cod_Cliente);
-            //    return View(resultado);
-            //}
-
-            //public IActionResult ListaPisosPorFiltroLoad(int idCosta)
-            //{
-            //    BusquedaModel busqueda = new BusquedaModel();
-            //    var resultado = this.repo.GetViviendasByFilter(busqueda.TiposViviendaSelectedValue, idCosta, busqueda.NumeroBaniosSelectedValue, busqueda.NumeroHabitacionesSelectedValue, busqueda.Cod_Casa, busqueda.Cod_Cliente);
-            //    return View("~/Views/Home/ListaPisosPorFiltro.cshtml", resultado);
-            //}
-
-
-
         }
+        public async Task <IActionResult> Property(int cod_casa)//para sacar una casa para la descripción
+        {
+            BusquedaModel busqueda = new BusquedaModel();
+            busqueda.TiposViviendaSelectedValue = 0;
+            busqueda.TiposViviendaSelectedValue= 0;
+            busqueda.CostasSelectedValue= 0;
+            busqueda.NumeroBaniosSelectedValue=0;
+            busqueda.NumeroBaniosSelectedValue= 0;
+            busqueda.Cod_Cliente= 0;
+            busqueda.Cod_Casa = cod_casa;
+            var propiedad = await this.repo.GetViviendasByFilterAsync(busqueda);
+            return View(propiedad.FirstOrDefault());
+        }
+
+
+
+        public async Task <IActionResult> ListaPisosPorFiltroLoad(int idCosta)
+        {
+            BusquedaModel busqueda = new BusquedaModel();
+            busqueda.CostasSelectedValue = idCosta;
+            busqueda.TiposViviendaSelectedValue = 0;
+            busqueda.TiposViviendaSelectedValue = 0;
+          
+            busqueda.NumeroBaniosSelectedValue = 0;
+            busqueda.NumeroBaniosSelectedValue = 0;
+            busqueda.Cod_Cliente = 0;
+            busqueda.Cod_Casa = 0;
+
+
+            var resultado = await this.repo.GetViviendasByFilterAsync(busqueda);
+            return View("~/Views/Home/ListaPisosPorFiltro.cshtml", resultado);
+        }
+
+
+
     }
+    
 }

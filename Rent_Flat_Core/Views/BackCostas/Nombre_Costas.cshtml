@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Rent_Flat_Core.Models.Costas>
+
+@{
+    ViewData["Title"] = "Nombre_Costas";
+    Layout = "~/Views/Shared/PlantillaBack.cshtml";
+}
+
+<h2>Nombre_Costas</h2>
+
+<div class="container-fluid">
+    <p>
+        @Html.ActionLink("Registrar Nueva Costa", "Create", new { }, new { @class = "btn btn-warning" })
+    </p>
+    <hr />
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive table--no-card m-b-30">
+                <table class="table table-borderless table-striped table-earning">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cod_Provincia)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NombreProvincia)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cod_Provincia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NombreProvincia)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Modificar", "Edit", new { id = item.Cod_Provincia }, new { @class = "btn btn-success btn-sm" })
+                                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Cod_Provincia }, new { @class = "btn btn-danger btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ namespace Rent_Flat_Core.Models
         public int Cod_casa { get; set; }
         public byte[] Foto { get; set; }
         public int Orden { get; set; }
-       
-        //no existe en core
-        // public HttpPostedFileBase ImgData { get; set; }
+
+       // no existe en core
+         public IFormFile ImgData { get; set; }
     }
 }
