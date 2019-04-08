@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rent_Flat_Core.Models;
 using Rent_Flat_Core.Repositories;
@@ -39,7 +40,7 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Usuarios u, int id)
         {
-           
+            string token = HttpContext.Session.GetString("TOKEN");
 
             if (!ModelState.IsValid)
             {
@@ -55,7 +56,7 @@ namespace Rent_Flat_Core.Controllers
             }
             u.Password = encodingService.SHA256(u.Password);
 
-            await this.repo.ModificarUsuarioAsync(u,id);
+            await this.repo.ModificarUsuarioAsync(u,id,token);
             return RedirectToAction("Usuarios");
         }
 
@@ -82,6 +83,7 @@ namespace Rent_Flat_Core.Controllers
         public async Task<IActionResult> Create(Usuarios cl)
         {
             EncodingService encodingService = new EncodingService();
+            string token = HttpContext.Session.GetString("TOKEN");
 
             var listausuarios = await this.repo.GetUsuariosAsync();
             List<SelectListItem> listaPerfiles = new List<SelectListItem>();
@@ -102,7 +104,7 @@ namespace Rent_Flat_Core.Controllers
             cl.Perfil = listaPerfiles.Any(x=>x.Value==cl.DIR.ToString()) ? listaPerfiles.Where(x=>x.Value == cl.DIR.ToString()).Select(x=>x.Text).FirstOrDefault() : null;
                 cl.Password = encodingService.SHA256(cl.Password);
 
-            await this.repo.InsertarUsuarioAsync(cl);
+            await this.repo.InsertarUsuarioAsync(cl, token);
 
 
             return RedirectToAction("Usuarios");
@@ -120,7 +122,8 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> EliminarUsuario(int Cod_usuario)
         {
-            await this.repo.EliminarUsuarioAsync(Cod_usuario);
+            string token = HttpContext.Session.GetString("TOKEN");
+            await this.repo.EliminarUsuarioAsync(Cod_usuario, token);
             return RedirectToAction("Usuarios");
 
         }

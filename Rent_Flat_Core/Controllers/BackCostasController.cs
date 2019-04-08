@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rent_Flat_Core.Models;
 using Rent_Flat_Core.Repositories;
@@ -33,14 +34,14 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Costas clientes, int id)
         {
-            await this.repo.ModificarCostaAsync(clientes, id);
+            string token = HttpContext.Session.GetString("TOKEN");
 
             if (!ModelState.IsValid)
             {
                 
                 return View(clientes);
             }
-           
+            await this.repo.ModificarCostaAsync(clientes, id, token);
             return RedirectToAction("Nombre_Costas");
         }
 
@@ -56,13 +57,13 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Costas cl)
         {
-
+            string token = HttpContext.Session.GetString("TOKEN");
             if (!ModelState.IsValid)
             {
                 return View(cl);
                
             }
-            await this.repo.InsertarCostaAsync(cl);
+            await this.repo.InsertarCostaAsync(cl, token);
             return RedirectToAction("Nombre_Costas");
         }
 
@@ -78,7 +79,8 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> EliminarCosta(int Cod_Provincia)
         {
-            await this.repo.EliminarCostaAsync(Cod_Provincia);
+            string token = HttpContext.Session.GetString("TOKEN");
+            await this.repo.EliminarCostaAsync(Cod_Provincia, token);
             return RedirectToAction("Nombre_Costas");
 
         }

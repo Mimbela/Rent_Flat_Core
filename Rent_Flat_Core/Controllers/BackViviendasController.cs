@@ -70,6 +70,7 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Viviendas u, int id)
         {
+            string token = HttpContext.Session.GetString("TOKEN");
              List<SelectListItem> comboviviendas = new List<SelectListItem>();
             foreach (var item in await this.repo.GetNombreCostasAsync())
             {
@@ -112,7 +113,7 @@ namespace Rent_Flat_Core.Controllers
 
                 return View(u);
             }
-            await this.repo.ModificarViviendaAsync(u,id);
+            await this.repo.ModificarViviendaAsync(u,id, token);
             return RedirectToAction("Viviendas");
 
         }
@@ -162,6 +163,7 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task <IActionResult> Create(ViviendasViewModel u, IFormFile ImgData)
         {
+            string token = HttpContext.Session.GetString("TOKEN");
             string fileContent = string.Empty;
             string fileContentType = string.Empty;
 
@@ -178,7 +180,7 @@ namespace Rent_Flat_Core.Controllers
             u.Ciudad = comboviviendas.Where(x => x.Value == u.Cod_Provincia.ToString()).Select(x => x.Text).FirstOrDefault();
 
 
-            if (!ModelState.IsValid || ImgData == null)
+            if (!ModelState.IsValid /*|| ImgData == null*/)
             {
                 List<SelectListItem> comboclientes = new List<SelectListItem>();
                 foreach (var item in await this.repo.GetClientesAsync())
@@ -227,12 +229,12 @@ namespace Rent_Flat_Core.Controllers
                 Ubicacion = u.Ubicacion
             };
 
-            int InsertedVivienda =await this.repo.InsertarViviendaAsync(vivienda);
-            Galeria_Fotos galeria = new Galeria_Fotos()
-            {
-                Cod_casa = InsertedVivienda,
-                //Foto = foto
-            };
+            int InsertedVivienda =await this.repo.InsertarViviendaAsync(vivienda, token);
+            //Galeria_Fotos galeria = new Galeria_Fotos()
+            //{
+            //    Cod_casa = InsertedVivienda,
+            //    //Foto = foto
+            //};
 
          //   this.repo.InsertarImagen(galeria);
 
@@ -240,7 +242,20 @@ namespace Rent_Flat_Core.Controllers
 
             return RedirectToAction("Viviendas");
         }
+    //---------------------------------
+        public async Task <IActionResult> Delete(int id)
+        {
+            Viviendas viviendas = await this.repo.BuscarViviendaAsync(id);
+            return View(viviendas);
+        }
 
+        [HttpPost]
+        public async Task <IActionResult> EliminarViviendas(int Cod_casa)
+        {
+            string token = HttpContext.Session.GetString("TOKEN");
+            await this.repo.EliminarViviendaAsync(Cod_casa, token);
+            return RedirectToAction("Viviendas");
+        }
 
     }
 

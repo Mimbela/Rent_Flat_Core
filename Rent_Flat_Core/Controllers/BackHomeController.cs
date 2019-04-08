@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Rent_Flat_Core.Filters;
 using Rent_Flat_Core.Repositories;
 
 namespace Rent_Flat_Core.Controllers
 {
+    [EmpleadosAuthorize]
     public class BackHomeController : Controller
     {
-        IRepository repo;
-        public BackHomeController(IRepository repo)
+        RepositoryApiRent repo;
+        public BackHomeController(RepositoryApiRent repo)
         {
             this.repo = repo;
         }
-        public IActionResult Index(/*int? indice*/)//lo haré con linq//? son opcionales
+        public async Task<IActionResult> Index(/*int? indice*/)//lo haré con linq//? son opcionales
         {
+            var viviendas = await this.repo.GetViviendasAsync();
+            var tiposViviendas = await this.repo.GetTiposViviendasAsync();
+            var costas = await this.repo.GetNombreCostasAsync();
+            int totalViviendas = viviendas.Count();
+            int totalTiposViviendas = tiposViviendas.Count();
+            int totalCostas = costas.Count();
+            ViewBag.TotalPisos = totalViviendas;
+            ViewBag.TotalTiposVivienda = totalTiposViviendas;
+            ViewBag.TotalCostas = totalCostas;
+
             //if (indice == null)
             //{
             //    indice = 0;

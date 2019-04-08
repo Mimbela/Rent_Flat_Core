@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Rent_Flat_Core.Models;
 using Rent_Flat_Core.Repositories;
 
@@ -35,14 +36,14 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Tipos_Vivienda tipo, int id)
         {
-            await this.repo.ModificarTipoViviendaAsync(tipo, id);
+            string token = HttpContext.Session.GetString("TOKEN");
 
             if (!ModelState.IsValid)
             {
 
                 return View(tipo);
             }
-
+            await this.repo.ModificarTipoViviendaAsync(tipo, id, token);
             return RedirectToAction("GetTipoVivienda");
         }
 
@@ -58,13 +59,13 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Tipos_Vivienda cl)
         {
-
+            string token = HttpContext.Session.GetString("TOKEN");
             if (!ModelState.IsValid)
             {
                 return View(cl);
 
             }
-            await this.repo.InsertarTipoViviendaAsync(cl);
+            await this.repo.InsertarTipoViviendaAsync(cl, token);
             return RedirectToAction("GetTipoVivienda");
         }
 
@@ -80,7 +81,8 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> EliminarTipoVivienda(int Cod_tipo_vivienda)
         {
-            await this.repo.EliminarTipoViviendaAsync(Cod_tipo_vivienda);
+            string token = HttpContext.Session.GetString("TOKEN");
+            await this.repo.EliminarTipoViviendaAsync(Cod_tipo_vivienda, token);
             return RedirectToAction("GetTipoVivienda");
 
         }

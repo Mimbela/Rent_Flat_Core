@@ -103,14 +103,14 @@
             <!-- HEADER DESKTOP-->
             <header class="welcome2 p-t-40 p-b-55">
                 @*MOSTRAR EL NOMBRE DEL DIRECTOR QUE TIENE LA SESSION ABIERTA*@
-                @*@if (HttpContext.Current.User.Identity.IsAuthenticated)
+                @if (Context.User.Identity.IsAuthenticated)
                 {
                     <h1 class="title-6">
-                        Bienvenido Sr/Sra @HttpContext.Current.User.Identity.Name
+                        Bienvenido Sr/Sra @Context.User.Identity.Name
 
                     </h1>
                     @Html.ActionLink("Cerrar sesión", "CerrarSesion", "Validacion")
-                }*@
+                }
 
 
             </header>
@@ -120,7 +120,8 @@
                 <div class="section__content section__content--p30">
                     @RenderBody()
                 </div>
-
+                
+             
             </div>
         </div>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,11 +29,35 @@ namespace Rent_Flat_Core
         {
             String cadenaconexion = this.configuration.GetConnectionString("cadena");
 
-          
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             //se resuelve las dependencias con AddTransient
-            services.AddTransient<IRepository, Repository>();
+             services.AddTransient<IRepository, Repository>();
+
+        
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddTransient<RepositoryApiRent>();
+            //--------------------
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie();
+
+
             services.AddDbContext<IRentContext, RentContext>(options => options.UseSqlServer(cadenaconexion));
             services.AddMvc();
         }
@@ -41,18 +66,22 @@ namespace Rent_Flat_Core
         //----------------------------------------------
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //1º control de errores en desarrollo
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();//linea de control de errores
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-
-            //4º utilizamos los archivos estáticos
             app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseSession();
 
-           
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

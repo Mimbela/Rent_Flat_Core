@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rent_Flat_Core.Models;
 using Rent_Flat_Core.Repositories;
@@ -46,7 +47,7 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> ModificarCliente(Clientes clientes, int id)
         {
-            await this.repo.ModificarClienteAsync(clientes, id);
+            string token = HttpContext.Session.GetString("TOKEN");
 
             if (!ModelState.IsValid)
             {
@@ -62,7 +63,8 @@ namespace Rent_Flat_Core.Controllers
                 ViewBag.ComboCostas = comboviviendas;
                 return View(clientes);
             }
-                return RedirectToAction("Clientes");
+            await this.repo.ModificarClienteAsync(clientes, id, token);
+            return RedirectToAction("Clientes");
         }
 
         //--------------------------CREATE
@@ -85,7 +87,7 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertarCliente(Clientes cl)
         {
-          
+            string token = HttpContext.Session.GetString("TOKEN");
             if (!ModelState.IsValid)
             {
                 List<SelectListItem> comboviviendas = new List<SelectListItem>();
@@ -103,7 +105,7 @@ namespace Rent_Flat_Core.Controllers
                 ViewBag.ComboCostas = comboviviendas;
                 return View(cl);
             }
-            await this.repo.InsertarClienteAsync(cl);
+            await this.repo.InsertarClienteAsync(cl, token);
             return RedirectToAction("Clientes");
   }
 
@@ -119,7 +121,8 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult>EliminarCliente(int IdCliente)
         {
-            await this.repo.EliminarClienteAsync(IdCliente);
+            string token = HttpContext.Session.GetString("TOKEN");
+            await this.repo.EliminarClienteAsync(IdCliente, token);
             return RedirectToAction("Clientes");
 
         }
