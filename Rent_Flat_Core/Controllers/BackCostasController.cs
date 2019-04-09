@@ -21,6 +21,7 @@ namespace Rent_Flat_Core.Controllers
         {
             return View(await this.repo.GetNombreCostasAsync());
         }
+        //7
 
         //--------------------------------------------------------------------
         //GET: EDIT
