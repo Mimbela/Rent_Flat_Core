@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -161,7 +162,7 @@ namespace Rent_Flat_Core.Controllers
             return View(new ViviendasViewModel());
         }
         [HttpPost]
-        public async Task <IActionResult> Create(ViviendasViewModel u, IFormFile ImgData)
+        public async Task <IActionResult> Create(ViviendasViewModel u)
         {
             string token = HttpContext.Session.GetString("TOKEN");
             string fileContent = string.Empty;
@@ -209,6 +210,13 @@ namespace Rent_Flat_Core.Controllers
                 ViewBag.ListaTiposViviendaCreate.AddRange(combotipos);
                 return View(u);
             }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await u.FotoVivienda.CopyToAsync(memoryStream);
+                u.Foto = memoryStream.ToArray();
+            }
+
             //byte[] foto = new byte[ImgData.InputStream.Length];
             //u.ImgData.InputStream.Read(foto, 0, foto.Length);
             //fileContent = Convert.ToBase64String(foto);
@@ -230,13 +238,13 @@ namespace Rent_Flat_Core.Controllers
             };
 
             int InsertedVivienda =await this.repo.InsertarViviendaAsync(vivienda, token);
-            //Galeria_Fotos galeria = new Galeria_Fotos()
-            //{
-            //    Cod_casa = InsertedVivienda,
-            //    //Foto = foto
-            //};
+            Galeria_Fotos galeria = new Galeria_Fotos()
+            {
+                Cod_casa = InsertedVivienda,
+                Foto = u.Foto
+            };
 
-         //   this.repo.InsertarImagen(galeria);
+            await this.repo.InsertarGaleriaFotosAsync(galeria, token);
 
 
 

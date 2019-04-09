@@ -32,6 +32,11 @@ namespace Rent_Flat_Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(String usuario, String password)
         {
+             if(string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(password))
+            {
+                ViewBag.Mensaje = "Usuario/Password incorrectos";
+                return View();
+            }
             EncodingService encoding = new EncodingService();
             //BUSCAMOS EL TOKEN PARA COMPROBAR LAS CREDENCIALES
             //DEL EMPLEADO

@@ -17,8 +17,8 @@ namespace Rent_Flat_Core.Repositories
 
         public RepositoryApiRent()
         {
-           // this.uriapi = "https://apirentflatmvc.azurewebsites.net/";
-            this.uriapi = "http://localhost:5179/";
+            this.uriapi = "https://apirentflatmvc.azurewebsites.net/";
+           // this.uriapi = "http://localhost:5179/";
             this.headerjson = new MediaTypeWithQualityHeaderValue("application/json");
 
         }
@@ -847,6 +847,85 @@ namespace Rent_Flat_Core.Repositories
                     , System.Text.Encoding.UTF8, "application/json");
 
                 await client.PutAsync(peticion, content);
+            }
+        }
+
+        public async Task InsertarGaleriaFotosAsync(Galeria_Fotos galeria, string token)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/InsertarGaleriaFotosAsync/";
+                client.BaseAddress = new Uri(this.uriapi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(headerjson);
+
+                Galeria_Fotos galeriaToApi = new Galeria_Fotos()
+                {
+                    Cod_casa = galeria.Cod_casa,
+                    Foto = galeria.Foto,
+                    Orden = 1
+                };
+
+
+                if (token != null)
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "bearer "
+                        + token);
+                }
+
+                String json = JsonConvert.SerializeObject(galeriaToApi);
+
+                StringContent content =
+                    new StringContent(json
+                    , System.Text.Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(peticion, content);
+
+                //if (response.IsSuccessStatusCode)
+                //{
+                //    int viviendas =
+                //    await response.Content.ReadAsAsync<int>();
+                //    return viviendas;
+                //}
+                //else
+                //{
+                //    return null;
+                //}
+
+            }
+
+        }
+
+        public async Task ModificarGaleriaFotosAsync(Galeria_Fotos galeria, string token)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                String peticion = "api/InsertarGaleriaFotosAsync/";
+                client.BaseAddress = new Uri(this.uriapi);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(headerjson);
+
+                Galeria_Fotos galeriaToApi = new Galeria_Fotos()
+                {
+                    Cod_casa = galeria.Cod_casa,
+                    Foto = galeria.Foto,
+                    Orden = 1
+                };
+
+
+                if (token != null)
+                {
+                    client.DefaultRequestHeaders.Add("Authorization", "bearer "
+                        + token);
+                }
+
+                String json = JsonConvert.SerializeObject(galeriaToApi);
+
+                StringContent content =
+                    new StringContent(json
+                    , System.Text.Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PutAsync(peticion, content);
             }
         }
     }

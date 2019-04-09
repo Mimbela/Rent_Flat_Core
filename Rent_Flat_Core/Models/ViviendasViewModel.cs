@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace Rent_Flat_Core.Models
         public byte[] Foto { get; set; }
 
         public Galeria_Fotos Galeria_Fotos { get; set; }
+
+        public IFormFile FotoVivienda { get; set; }
 
 
         public ViviendasViewModel()
