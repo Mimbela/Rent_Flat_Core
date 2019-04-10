@@ -4,20 +4,27 @@
     Layout = "~/Views/Shared/PlantillaLogin.cshtml";
 }
 
-<h2>Login de Empleados</h2>
-<form method="post">
-    <div>
-        <label>Apellido: </label>
-        <input type="text" name="usuario" class="au-input au-input--full" placeholder="LOGIN"/>
-    </div>
-    <div>
-        <label>Número empleado: </label>
-        <input type="password" name="password" class="au-input au-input--full" placeholder="contraseña" />
-    </div>
-    <div>
-        <button type="submit" class="au-btn au-btn--block au-btn--green m-b-20">Log In</button>
-    </div>
-</form>
-<h2 style="color:red">
-    @ViewBag.Mensaje
-</h2>
+
+
+        <h2>Login de Empleados</h2>
+        <form method="post">
+            <div class="login-content">
+                <div class="login-form">
+                    <div class="form-group">
+                        <label>Login: </label>
+                        <input type="text" name="usuario" class="au-input au-input--full" placeholder="LOGIN" />
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña: </label>
+                        <input type="password" name="password" class="au-input au-input--full" placeholder="contraseña" />
+                    </div>
+                    <div>
+                        <button type="submit" class="au-btn au-btn--block au-btn--green m-b-20">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <h2 style="color:red">
+            @ViewBag.Mensaje
+        </h2>
+ 

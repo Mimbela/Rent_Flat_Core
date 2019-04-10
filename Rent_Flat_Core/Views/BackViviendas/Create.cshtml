@@ -10,132 +10,136 @@
 }
 
 <h2>Create</h2>
+<div class="card">
+    <div class="card-header">Crear nueva vivienda</div>
+    <div class="card-body">
 
-<h4>Viviendas</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="Cod_casa" class="control-label"></label>
-                <input asp-for="Cod_casa" class="form-control" />
-                <span asp-validation-for="Cod_casa" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="Cod_Provincia" class="control-label"></label>
-            <input asp-for="Cod_Provincia" class="form-control" />
-            <span asp-validation-for="Cod_Provincia" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cod_Provincia, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Cod_Provincia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cod_Provincia, "", new { @class = "text-danger" })*@
-                    <select name="Cod_Provincia" class="form-control">
-                        @foreach (var itemval in ListaCostas)
-                        {
-                            <option value="@itemval.Value">@itemval.Text</option>
-                        }
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group" hidden>
+                        <label asp-for="Cod_casa" class="control-label"></label>
+                        <input asp-for="Cod_casa" class="form-control" />
+                        <span asp-validation-for="Cod_casa" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Cod_Provincia" class="control-label"></label>
+                        <input asp-for="Cod_Provincia" class="form-control" />
+                        <span asp-validation-for="Cod_Provincia" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cod_Provincia, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.Cod_Provincia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cod_Provincia, "", new { @class = "text-danger" })*@
+                            <select name="Cod_Provincia" class="form-control">
+                                @foreach (var itemval in ListaCostas)
+                                {
+                                    <option value="@itemval.Value">@itemval.Text</option>
+                                }
 
-                    </select>
-                </div>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="IdCliente" class="control-label"></label>
-            <input asp-for="IdCliente" class="form-control" />
-            <span asp-validation-for="IdCliente" class="text-danger"></span>
-        </div>*@
+                            </select>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="IdCliente" class="control-label"></label>
+                        <input asp-for="IdCliente" class="form-control" />
+                        <span asp-validation-for="IdCliente" class="text-danger"></span>
+                    </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })*@
-                    <select name="IdCliente" class="form-control">
-                        @foreach (var cl in ListaClientes)
-                        {
-                            <option value="@cl.Value">@cl.Text</option>
-                        }
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })*@
+                            <select name="IdCliente" class="form-control">
+                                @foreach (var cl in ListaClientes)
+                                {
+                                    <option value="@cl.Value">@cl.Text</option>
+                                }
 
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ubicacion" class="control-label"></label>
-                <input asp-for="Ubicacion" class="form-control" />
-                <span asp-validation-for="Ubicacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Codigo_Posta" class="control-label"></label>
-                <input asp-for="Codigo_Posta" class="form-control" />
-                <span asp-validation-for="Codigo_Posta" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="Ciudad" class="control-label"></label>
-            <input asp-for="Ciudad" class="form-control" />
-            <span asp-validation-for="Ciudad" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="Num_habitaciones" class="control-label"></label>
-                <input asp-for="Num_habitaciones" class="form-control" />
-                <span asp-validation-for="Num_habitaciones" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Num_banios" class="control-label"></label>
-                <input asp-for="Num_banios" class="form-control" />
-                <span asp-validation-for="Num_banios" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tamanio_vivienda" class="control-label"></label>
-                <input asp-for="Tamanio_vivienda" class="form-control" />
-                <span asp-validation-for="Tamanio_vivienda" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Garaje" /> @Html.DisplayNameFor(model => model.Garaje)
-                    </label>
-                </div>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="Cod_TipoVivienda" class="control-label"></label>
-            <input asp-for="Cod_TipoVivienda" class="form-control" />
-            <span asp-validation-for="Cod_TipoVivienda" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                @Html.Label("Tipos de Vivienda")
-                <div class="col-md-10">
-                    @*@Html.DropDownListFor(model => model.Cod_TipoVivienda, ListaTiposVivienda, new { htmlAttributes = new { @class="form-control"} })*@
-                    <select name="Cod_TipoVivienda" class="form-control">
-                        @foreach (var itemval in ListaTiposVivienda)
-                        {
-                            <option value="@itemval.Value">@itemval.Text</option>
-                        }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Ubicacion" class="control-label"></label>
+                        <input asp-for="Ubicacion" class="form-control" />
+                        <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Codigo_Posta" class="control-label"></label>
+                        <input asp-for="Codigo_Posta" class="form-control" />
+                        <span asp-validation-for="Codigo_Posta" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Ciudad" class="control-label"></label>
+                        <input asp-for="Ciudad" class="form-control" />
+                        <span asp-validation-for="Ciudad" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="Num_habitaciones" class="control-label"></label>
+                        <input asp-for="Num_habitaciones" class="form-control" />
+                        <span asp-validation-for="Num_habitaciones" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Num_banios" class="control-label"></label>
+                        <input asp-for="Num_banios" class="form-control" />
+                        <span asp-validation-for="Num_banios" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tamanio_vivienda" class="control-label"></label>
+                        <input asp-for="Tamanio_vivienda" class="form-control" />
+                        <span asp-validation-for="Tamanio_vivienda" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descripcion" class="control-label"></label>
+                        <input asp-for="Descripcion" class="form-control" />
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="Garaje" /> @Html.DisplayNameFor(model => model.Garaje)
+                            </label>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Cod_TipoVivienda" class="control-label"></label>
+                        <input asp-for="Cod_TipoVivienda" class="form-control" />
+                        <span asp-validation-for="Cod_TipoVivienda" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        @Html.Label("Tipos de Vivienda")
+                        <div class="col-md-10">
+                            @*@Html.DropDownListFor(model => model.Cod_TipoVivienda, ListaTiposVivienda, new { htmlAttributes = new { @class="form-control"} })*@
+                            <select name="Cod_TipoVivienda" class="form-control">
+                                @foreach (var itemval in ListaTiposVivienda)
+                                {
+                                    <option value="@itemval.Value">@itemval.Text</option>
+                                }
 
-                    </select>
+                            </select>
 
-                </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <p>Foto:</p>
+                            <input type="file" name="FotoVivienda" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar" class="btn btn-default" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <div class="col-md-10">
-                    <p>Foto:</p>
-                    <input type="file" name="FotoVivienda"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+
+        <div>
+            <a asp-action="Viviendas">VOLVER</a>
+        </div>
+
+
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

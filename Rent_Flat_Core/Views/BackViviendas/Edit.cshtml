@@ -8,149 +8,153 @@
     List<SelectListItem> Comboclientes = ViewBag.comboclientes;
 }
 
-<h2>Edit</h2>
+<div class="card">
+    <div class="card-header">Modificar Vivienda en @Model.Ubicacion</div>
+    <div class="card-body">
 
-<h4>Viviendas</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="Cod_casa" class="control-label"></label>
-                <input asp-for="Cod_casa" class="form-control" />
-                <span asp-validation-for="Cod_casa" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="Cod_Provincia" class="control-label"></label>
-            <input asp-for="Cod_Provincia" class="form-control" />
-            <span asp-validation-for="Cod_Provincia" class="text-danger"></span>
-        </div>*@
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group" hidden>
+                        <label asp-for="Cod_casa" class="control-label"></label>
+                        <input asp-for="Cod_casa" class="form-control" />
+                        <span asp-validation-for="Cod_casa" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Cod_Provincia" class="control-label"></label>
+                        <input asp-for="Cod_Provincia" class="form-control" />
+                        <span asp-validation-for="Cod_Provincia" class="text-danger"></span>
+                    </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Cod_Provincia, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.Cod_Provincia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cod_Provincia, "", new { @class = "text-danger" })*@
-                    <select name="Cod_Provincia" class="form-control">
-                        @foreach (var c in ComboCostas)
-                        {
-                            if (Model.Cod_Provincia.ToString().Equals(c.Value))
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cod_Provincia, htmlAttributes: new { @class = "control-label " })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.Cod_Provincia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cod_Provincia, "", new { @class = "text-danger" })*@
+                            <select name="Cod_Provincia" class="form-control">
+                                @foreach (var c in ComboCostas)
+                                {
+                                    if (Model.Cod_Provincia.ToString().Equals(c.Value))
+                                    {
+                                        <option value="@c.Value" selected>@c.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@c.Value">@c.Text</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label asp-for="IdCliente" class="control-label"></label>
+                        <input asp-for="IdCliente" class="form-control" />
+                        <span asp-validation-for="IdCliente" class="text-danger"></span>
+                    </div>*@
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })*@
+                            <select name="IdCliente" class="form-control">
+                                @foreach (var i in Comboclientes)
+                                {
+                                    if (Model.IdCliente.ToString().Equals(i.Value))
+                                    {
+                                        <option value="@i.Value" selected>@i.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@i.Value">@i.Text</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Ubicacion" class="control-label"></label>
+                        <input asp-for="Ubicacion" class="form-control" />
+                        <span asp-validation-for="Ubicacion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Codigo_Posta" class="control-label"></label>
+                        <input asp-for="Codigo_Posta" class="form-control" />
+                        <span asp-validation-for="Codigo_Posta" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Ciudad" class="control-label"></label>
+                        <input asp-for="Ciudad" class="form-control" />
+                        <span asp-validation-for="Ciudad" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="Num_habitaciones" class="control-label"></label>
+                        <input asp-for="Num_habitaciones" class="form-control" />
+                        <span asp-validation-for="Num_habitaciones" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Num_banios" class="control-label"></label>
+                        <input asp-for="Num_banios" class="form-control" />
+                        <span asp-validation-for="Num_banios" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Tamanio_vivienda" class="control-label"></label>
+                        <input asp-for="Tamanio_vivienda" class="form-control" />
+                        <span asp-validation-for="Tamanio_vivienda" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descripcion" class="control-label"></label>
+                        <input asp-for="Descripcion" class="form-control" />
+                        <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="Garaje" /> @Html.DisplayNameFor(model => model.Garaje)
+                            </label>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Cod_TipoVivienda" class="control-label"></label>
+                        <input asp-for="Cod_TipoVivienda" class="form-control" />
+                        <span asp-validation-for="Cod_TipoVivienda" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+
+                        @*@Html.DropDownListFor(model => model.Cod_TipoVivienda, ListaTiposVivienda)*@
+                        <select name="Cod_TipoVivienda" class="form-control">
+                            @foreach (var itemval in ListaTiposVivienda)
                             {
-                                <option value="@c.Value" selected>@c.Text</option>
-                            }else
-	                        {
-                                <option value="@c.Value" >@c.Text</option>
-	                        }
-                            
-                        }
-                    </select>
-                </div>
-            </div>
+                                if (Model.Cod_TipoVivienda.ToString().Equals(itemval.Value))
+                                {
+                                    <option value="@itemval.Value" selected>@itemval.Text</option>
+                                }
+                                else
+                                {
+                                    <option value="@itemval.Value">@itemval.Text</option>
+                                }
 
-            @*<div class="form-group">
-            <label asp-for="IdCliente" class="control-label"></label>
-            <input asp-for="IdCliente" class="form-control" />
-            <span asp-validation-for="IdCliente" class="text-danger"></span>
-        </div>*@
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })*@
-                    <select name="IdCliente" class="form-control">
-                        @foreach (var i in Comboclientes)
-                        {
-                            if (Model.IdCliente.ToString().Equals(i.Value))
-                            {
-                                <option value="@i.Value" selected>@i.Text</option>
                             }
-                            else
-                            {
-                                <option value="@i.Value">@i.Text</option>
-                            }
+                        </select>
 
-                        }
-                    </select>
-                </div>
+                        @*@Html.ValidationMessageFor(model => model.Cod_TipoVivienda, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Guardar Cambios" class="btn btn-default" />
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label asp-for="Ubicacion" class="control-label"></label>
-                <input asp-for="Ubicacion" class="form-control" />
-                <span asp-validation-for="Ubicacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Codigo_Posta" class="control-label"></label>
-                <input asp-for="Codigo_Posta" class="form-control" />
-                <span asp-validation-for="Codigo_Posta" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="Ciudad" class="control-label"></label>
-                <input asp-for="Ciudad" class="form-control" />
-                <span asp-validation-for="Ciudad" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Num_habitaciones" class="control-label"></label>
-                <input asp-for="Num_habitaciones" class="form-control" />
-                <span asp-validation-for="Num_habitaciones" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Num_banios" class="control-label"></label>
-                <input asp-for="Num_banios" class="form-control" />
-                <span asp-validation-for="Num_banios" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tamanio_vivienda" class="control-label"></label>
-                <input asp-for="Tamanio_vivienda" class="form-control" />
-                <span asp-validation-for="Tamanio_vivienda" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Garaje" /> @Html.DisplayNameFor(model => model.Garaje)
-                    </label>
-                </div>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="Cod_TipoVivienda" class="control-label"></label>
-            <input asp-for="Cod_TipoVivienda" class="form-control" />
-            <span asp-validation-for="Cod_TipoVivienda" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-
-                @*@Html.DropDownListFor(model => model.Cod_TipoVivienda, ListaTiposVivienda)*@
-                <select name="Cod_TipoVivienda" class="form-control">
-                    @foreach (var itemval in ListaTiposVivienda)
-                    {
-                        if (Model.Cod_TipoVivienda.ToString().Equals(itemval.Value))
-                        {
-                            <option value="@itemval.Value" selected>@itemval.Text</option>
-                        }
-                        else
-                        {
-                            <option value="@itemval.Value">@itemval.Text</option>
-                        }
-                       
-                    }
-                </select>
-
-                @*@Html.ValidationMessageFor(model => model.Cod_TipoVivienda, "", new { @class = "text-danger" })*@
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        <div>
+            <a asp-action="Viviendas">VOLVER</a>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
